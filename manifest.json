@@ -9,5 +9,5 @@
   "chrome_url_overrides": {
     "newtab": "src/new-tab/index.html"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage", "tabs"]
 }
