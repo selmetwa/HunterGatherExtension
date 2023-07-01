@@ -32,7 +32,6 @@
     });
 
     if (data && !error) {
-      console.log({ data, error });
       const accessToken = data?.session?.access_token;
       aToken = accessToken;
       userId = data?.user?.id;
@@ -54,15 +53,14 @@
 
     aToken = accessToken
     userId = u;
-    console.log("mount", { accessToken });
   });
 </script>
 
-<div class="mt-4 space-y-6 w-[450px] h-[500px]">
-  <div class="p-4 mt-12">
+<div class="mt-4 space-y-6 w-[450px] min-h-min border-4 border-gray-400 bg-gray-100">
+  <div class="p-4 mt-4">
     {#if aToken}
     <div class="bg-gray-200 py-8 flex items-center justify-center">
-      <h1 class="text-gray-400 font-light text-xl">{url}</h1>
+      <h1 class="text-blue-400 font-light text-xl w-[350px] break-words">{url}</h1>
     </div>
     <Collections client={supabase} userId={userId} {title} {url} />
     {:else}

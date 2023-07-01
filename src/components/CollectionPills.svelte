@@ -8,7 +8,7 @@
 
 {#if !!collectionIds.length}
 	<p class="text-gray-400 mt-4">Add to collection(s)</p>
-	<div class="vertical-scroll">
+	<div class="vertical-scroll bg-white p-[5px]">
 		{#each collectionIds as obj}
 			<Pill
 				val={obj.collectionId}
@@ -22,7 +22,7 @@
 
 <style>
 	.vertical-scroll {
-		max-height: 300px;
+		max-height: 150px;
 		overflow: scroll;
 		overflow-x: hidden;
 	}
