@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { v4 as uuidv4 } from "uuid";
   import CollectionPills from "./CollectionPills.svelte";
+  import LoadingSpinner from "./LoadingSpinner.svelte";
   export let client;
   export let userId;
   export let title;
@@ -110,7 +111,6 @@
 
   const handleResponse = (res, responseData) => {
     const { status } = res;
-
     // handle error
     if (status === 500) {
       setTimeout(() => {
@@ -139,7 +139,7 @@
 
   const createBlock = async (t, u, colIds, uId) => {
     inProgress = true;
-    const res = await fetch(`http://localhost:5173/api/blocks`, {
+    const res = await fetch("https://huntergather.website/api/blocks", {
       method: "POST",
       headers: { accept: "application/json" },
       body: JSON.stringify({
@@ -150,7 +150,6 @@
       }),
     });
 
-    // const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id);
     const responseData = await res.json();
     handleResponse(res, responseData);
   };
@@ -190,7 +189,6 @@
   </div>
 {/if}
 
-<!-- objectsCount <= 200 || true -->
 {#if objectsCount <= 200 || isSubscriber}
   <section class="flex">
     {#each tabs as tab}
@@ -198,9 +196,9 @@
         value={tab.val}
         class={`${
           activeTab === tab.val
-            ? "border-2 text-action-400 border-action-400 font-bold"
-            : "text-gray-400 border-2 border-gray-100"
-        } bg-gray-100 rounded-md my-2 mx-2 m font-sans group relative flex w-full justify-center py-2 px-4 font-medium ease-in-out duration-300 cursor-pointer`}
+            ? "border text-gray-800 border-gray-500 font-bold"
+            : "text-gray-300 border border-gray-300"
+        } text-sm bg-gray-100 rounded-sm my-2 mx-2 m font-sans group relative flex w-full justify-center py-2 px-4 font-medium ease-in-out duration-300 cursor-pointer`}
         on:click={(e) => (activeTab = e.target.value)}
       >
         {tab.name}
@@ -215,10 +213,14 @@
       {onPillClick}
     />
     <button
-      class="font-bold font-sans group relative flex w-min justify-center rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mx-auto my-3 mt-4"
+      class="group relative flex w-full justify-center rounded-sm border border-gray-500 bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-gray-800 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-4"
       on:click={handleCreateBlock}
     >
-      Create Block
+      {#if inProgress}
+        <LoadingSpinner />
+      {:else}
+        Create Block
+      {/if}
     </button>
   {:else}
     <p class="text-gray-400 font-light text-lg mt-2">
@@ -244,10 +246,14 @@
       {onPillClick}
     />
     <button
-      class="font-bold font-sans group relative flex w-min justify-center rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mx-auto my-3 mt-4"
+      class="group relative flex w-full justify-center rounded-sm border border-gray-500 bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-gray-800 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-4"
       on:click={createCollection}
     >
-      Create Collection
+      {#if inProgress}
+        <LoadingSpinner />
+      {:else}
+        Create Collection
+      {/if}
     </button>
   {/if}
 {:else}
@@ -265,7 +271,7 @@
   <p class="text-gray-400 font-light text-lg mt-2">
     Subscribe for the ability to contribute unlimited blocks & collections
   </p>
-  <a href="http://localhost:5173/pricing">
+  <a href="https://huntergather.website/pricing" target="_blank">
     <button
       class="font-bold font-sans group relative flex w-min justify-center rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mx-auto my-3 mt-4 w-full"
     >

@@ -1,8 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  content: ["./src/**/*.{html,js,svelte,ts}"],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      aspectRatio: {
+        '4/3': '4 / 3'
+      },
+      fontFamily: {
+        sans: ['Proxima Nova', ...defaultTheme.fontFamily.sans]
+      },
       colors: {
         card: '#fff',
         background: '#E2DFDE',
@@ -12,8 +20,9 @@ module.exports = {
         },
         action: {
           100: '#FFCE99',
-          400: '#F98600',
-          500: '#E07400'
+          400: '#FECA9A',
+          500: '#FEC085',
+          600: '#FD9635',
         },
         detail: {
           100: '#B9A9A6',
@@ -35,7 +44,6 @@ module.exports = {
           700: '#406358'
         }
       }
-    },
+    }
   },
-  plugins: [],
 };

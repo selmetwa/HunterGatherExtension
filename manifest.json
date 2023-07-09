@@ -1,13 +1,13 @@
 {
-  "name": "Svelete Tailwind Chrome Extension",
-  "description": "Sample Extension using Svelte and Tailwind",
-  "version": "1.0",
+  "name": "HunterGather",
+  "description": "Chrome extension for https://huntergather.website/",
+  "version": "1.2",
   "manifest_version": 3,
   "action": {
     "default_popup": "src/popup/index.html"
   },
-  "chrome_url_overrides": {
-    "newtab": "src/new-tab/index.html"
+  "icons": {
+    "16": "src/static/fav.png"
   },
   "permissions": ["storage", "tabs"]
 }

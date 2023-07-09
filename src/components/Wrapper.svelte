@@ -56,7 +56,7 @@
   });
 </script>
 
-<div class="mt-4 space-y-6 w-[450px] min-h-min border-4 border-gray-400 bg-gray-100">
+<div class="space-y-6 w-[450px] min-h-min border-4 border-gray-300 bg-gray-100">
   <div class="p-4 mt-4">
     {#if aToken}
     <div class="bg-gray-200 py-8 flex items-center justify-center">
